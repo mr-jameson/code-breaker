@@ -7,12 +7,20 @@ class App extends Component {
     error: null
   };
 
+  stopTimer = () => {
+    this.setState({
+      timerActive: false,
+      time: null
+    });
+  };
+
   render() {
+    const { time } = this.state;
     return (
       <div>
         <h1>CODE BREAKER</h1>
         timer goes here
-        <Timer time={this.state.time} />
+        <Timer time={time} stopTimer={this.stopTimer} />
       </div>
     );
   }
