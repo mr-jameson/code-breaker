@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import format from "format-duration";
+
+let timer;
 
 class Timer extends Component {
-  
-  componentDidMount () {
-    setInterval(this.props.countdown, 1000);
+  componentDidMount() {
+    timer = setInterval(this.props.countdown, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(timer);
   }
 
   render() {
@@ -11,11 +17,11 @@ class Timer extends Component {
 
     return (
       <>
-        <span>{time}</span>
+        <span>{format(time * 1000)}</span>
         <button onClick={stopTimer}>Stop</button>
       </>
-    )
+    );
   }
 }
 
-export default Timer
+export default Timer;
