@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Timer from "./components/Timer";
 
 class App extends Component {
   state = {
@@ -7,12 +8,21 @@ class App extends Component {
     error: null
   };
 
+  stopTimer = e => {
+    e.preventDefault();
+
+    this.setState({
+      timerActive: false,
+      time: null
+    });
+  };
+
   render() {
+    const { timerActive, time } = this.state;
     return (
       <div>
         <h1>CODE BREAKER</h1>
-        timer goes here
-        <Timer time={this.state.time} />
+        {timerActive && <Timer time={time} stopTimer={this.stopTimer} />}
       </div>
     );
   }
