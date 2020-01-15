@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 
 class Timer extends Component {
+  
+  componentDidMount () {
+    setInterval(this.props.countdown, 1000);
+  }
+
   render() {
     const { time, stopTimer } = this.props;
 
@@ -9,8 +14,8 @@ class Timer extends Component {
         <span>{time}</span>
         <button onClick={stopTimer}>Stop</button>
       </>
-    );
+    )
   }
 }
 
-export default Timer;
+export default Timer
