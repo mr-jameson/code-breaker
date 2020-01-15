@@ -6,11 +6,11 @@ class TimerForm extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({ time: event.target.value })
+        this.setState({ time: event.target.value*60 })
     }
 
     handleSubmit = async (event) => {
-        await alert(`Timer is set for ${this.state.time} seconds`);
+        await alert(`Timer is set for ${this.state.time/60} minutes`);
         event.preventDefault();
         this.props.handleTimerFormSubmit(parseInt(this.state.time))
     }
@@ -19,7 +19,7 @@ class TimerForm extends Component {
         return(
         <form onSubmit={this.handleSubmit}>
             <label>
-                Time:
+                Minutes:
                 <input type="text" time={this.state.time} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
