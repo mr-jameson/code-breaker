@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
 
 class TimerForm extends Component {
-    constructor(props) {
-        this.state = { time: ''}
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    state = {
+        time: ""
     }
 
-    handleChange(event) {
-        this.setState({ value: event.target.time })
+    handleChange = (event) => {
+        this.setState({ time: event.target.value })
     }
 
-    handleSubmit(event) {
-        alert(`Timer is set for ${this.state.time} seconds`);
+    handleSubmit = async (event) => {
+        await alert(`Timer is set for ${this.state.time} seconds`);
         event.preventDefault();
+        this.props.handleTimerFormSubmit(parseInt(this.state.time))
     }
 
     render() {
         return(
-        <form>
+        <form onSubmit={this.handleSubmit}>
             <label>
                 Time:
                 <input type="text" time={this.state.time} onChange={this.handleChange} />

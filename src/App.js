@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import Timer from "./components/Timer";
+import TimerForm from "./components/TimerForm";
 
 class App extends Component {
   state = {
-    timerActive: true,
-    time: 6,
+    timerActive: false,
+    time: null,
     error: null
   };
 
@@ -37,12 +38,20 @@ class App extends Component {
     });
   };
 
+  handleTimerFormSubmit = (time) => {
+      this.setState({
+        time: time,
+        timerActive: true
+      })
+  }
+
+
   render() {
     const { timerActive, time } = this.state;
     return (
       <div>
         <h1>CODE BREAKER</h1>
-        {timerActive && <Timer time={time} stopTimer={this.stopTimer} countdown={this.countdown}/>}
+        {timerActive ? <Timer time={time} stopTimer={this.stopTimer} countdown={this.countdown}/> : <TimerForm handleTimerFormSubmit={this.handleTimerFormSubmit}/>}
       </div>
     );
   }
