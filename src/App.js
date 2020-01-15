@@ -3,13 +3,33 @@ import Timer from "./components/Timer";
 
 class App extends Component {
   state = {
-    timerActive: false,
-    time: null,
+    timerActive: true,
+    time: 6,
     error: null
   };
 
+
+  countdown = () => {
+
+    const {time } = this.state
+    if (time === 0) {
+      this.stopTimer()
+      alert("time to take a break")
+    } else {
+
+      this.setState(state => {
+
+        return {
+        
+          time: state.time - 1
+        }
+      })
+
+    }
+  }
+
   stopTimer = e => {
-    e.preventDefault();
+    if (e) e.preventDefault();
 
     this.setState({
       timerActive: false,
@@ -22,7 +42,7 @@ class App extends Component {
     return (
       <div>
         <h1>CODE BREAKER</h1>
-        {timerActive && <Timer time={time} stopTimer={this.stopTimer} />}
+        {timerActive && <Timer time={time} stopTimer={this.stopTimer} countdown={this.countdown}/>}
       </div>
     );
   }
