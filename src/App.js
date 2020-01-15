@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Timer from "./components/Timer";
 import TimerForm from "./components/TimerForm";
+import style from "./style.css"
 
 class App extends Component {
   state = {
